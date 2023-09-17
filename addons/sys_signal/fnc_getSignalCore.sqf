@@ -25,16 +25,24 @@ if (_count == 0) then {
     private _rxAntennas = [_receiverClass] call EFUNC(sys_components,findAntenna);
     private _txAntennas = [_transmitterClass] call EFUNC(sys_components,findAntenna);
 
+    private _model = GVAR(signalModel); // TODO: Change models on the fly if compatible (underwater, better frequency matching)
+
+    // Make sure ITWOM is not used for the moment
+    if (_model > SIGNAL_MODEL_ITWOM || {_model < SIGNAL_MODEL_CASUAL}) then {
+        _model = SIGNAL_MODEL_LOS_MULTIPATH;  // Default to LOS Multipath if the model is out of range
+        GVAR(signalModel) = _model;           // And make sure we do not use an invalid mode next time
+    };
+
     {
         private _txAntenna = _x;
         {
             private _rxAntenna = _x;
-            private _model = GVAR(signalModel); // TODO: Change models on the fly if compatible (underwater, better frequency matching)
 
-            // Make sure ITWOM is not used for the moment
-            if (_model > SIGNAL_MODEL_ITWOM || {_model < SIGNAL_MODEL_CASUAL}) then {
-                _model = SIGNAL_MODEL_LOS_MULTIPATH;  // Default to LOS Multipath if the model is out of range
-                GVAR(signalModel) = _model;           // And make sure we do not use an invalid mode next time
+            // IF the transmitter is using a LR antenna, use signalModelLR
+            private _txAntennaName = [_txAntenna select 0, "_"] call BIS_fnc_splitString select 1;
+
+            if (_txAntennaName in GVAR(lrAntennas)) then {
+                _model = GVAR(signalModelLR);
             };
 
             _count = _count + 1;
