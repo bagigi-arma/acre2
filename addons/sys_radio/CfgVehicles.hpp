@@ -27,4 +27,10 @@ class CfgVehicles {
         displayName = "ACRE TEST BAG";
         allowedSlots[] = {701, 801, 901};
     };
+
+    // Increase Contact DLC Radiopack load to be able to fit 2 AN/PRC-117F
+    class Bag_Base;
+    class B_RadioBag_01_base_F: Bag_Base {
+        maximumLoad = 240;
+    };
 };
