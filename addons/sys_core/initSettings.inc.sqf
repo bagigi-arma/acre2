@@ -143,6 +143,16 @@
     {[_this] call FUNC(setLossModelScale)}
 ] call CBA_fnc_addSetting;
 
+// Terrain loss of short-ranged AN/PRC-343
+[
+    QGVAR(terrainLossSR),
+    "SLIDER",
+    localize LSTRING(terrainLossSR_displayName),
+    "ACRE2",
+    [0, 1, 1, 2],
+    true
+] call CBA_fnc_addSetting;
+
 // Reveal to AI
 [
     QGVAR(revealToAI),

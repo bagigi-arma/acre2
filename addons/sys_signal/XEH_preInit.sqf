@@ -9,6 +9,7 @@ PREP_RECOMPILE_END;
 if (hasInterface) then {
     DGVAR(showSignalHint) = false;
     DGVAR(terrainScaling) = 1;
+    DGVAR(terrainScalingSR) = 1;
     DGVAR(omnidirectionalRadios) = 0;
 };
 

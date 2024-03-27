@@ -534,6 +534,11 @@
             <Italian>Coefficiente di attenuazione del terreno</Italian>
             <Turkish>Arasi Kaynaklı Parazit Katsayısı</Turkish>
         </Key>
+        <Key ID="STR_ACRE_sys_core_terrainLossSR_displayName">
+            <English>Terrain Loss Coeff. of PRC-343</English>
+            <German>Topografie-Signalverlustskoeff. für PRC-343</German>
+            <Italian>Coeff. di attenuazione del terreno della PRC-343</Italian>
+        </Key>
         <Key ID="STR_ACRE_sys_core_revealToAI_displayName">
             <English>AI Voice Detection</English>
             <Spanish>Detección del habla por parte de la IA</Spanish>

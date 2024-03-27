@@ -45,6 +45,13 @@ if (_count == 0) then {
                 _model = GVAR(signalModelLR);
             };
 
+            // IF a different terrainLoss was set for the PRC-343 and that radio is transmitting, use terrainScalingSR
+            private _terrainScaling = GVAR(terrainScaling);
+
+            if (_txAntennaName == "2HALFINCH") then {
+                _terrainScaling = GVAR(terrainScalingSR);
+            };
+
             _count = _count + 1;
             private _id = format ["%1_%2_%3_%4", _transmitterClass, (_txAntenna select 0), _receiverClass, (_rxAntenna select 0)];
             [
@@ -60,7 +67,7 @@ if (_count == 0) then {
                     (_rxAntenna select 0),
                     _f,
                     _mW,
-                    GVAR(terrainScaling),
+                    _terrainScaling,
                     diag_tickTime,
                     ACRE_SIGNAL_DEBUGGING,
                     GVAR(omnidirectionalRadios)
