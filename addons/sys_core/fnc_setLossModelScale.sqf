@@ -19,8 +19,12 @@ if (!hasInterface) exitWith {false};
 
 params ["_scale"];
 
-// Set
+// Validate terrainLoss setting
 _scale = _scale max 0;
 EGVAR(sys_signal,terrainScaling) = _scale;
+
+// Validate terrainLossSR
+private _scaleSR = GVAR(terrainLossSR) max 0;
+EGVAR(sys_signal,terrainScalingSR) = _scaleSR;
 
 _scale
