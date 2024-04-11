@@ -179,6 +179,9 @@
             <German>Aktuelle Lautstärke</German>
             <Italian>Volume attuale</Italian>
         </Key>
+        <Key ID="STR_ACRE_sys_radio_ui_RadioMode">
+            <English>Radio Mode Selector</English>
+        </Key>
         <Key ID="STR_ACRE_sys_radio_ui_Radiooff">
             <English>Radio off</English>
             <German>Funkgerät aus</German>
@@ -197,6 +200,9 @@
             <French>Canal actuel</French>
             <Turkish>Şu Anki Kanal</Turkish>
             <Portuguese>Canal atual</Portuguese>
+        </Key>
+        <Key ID="STR_ACRE_sys_radio_ui_changeFrequency">
+            <English>Change Frequency</English>
         </Key>
         <Key ID="STR_ACRE_sys_radio_ui_CurrentChannelBlock">
             <English>Current Channel Block</English>
