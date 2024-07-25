@@ -41,4 +41,10 @@ if (acre_player isEqualTo player) then { // using zeus player voice
     ACRE_ASSIGNED_PTT_RADIOS_REMOTE = _var;
 };
 
+// Save Rack PTT Assignments to vehicle
+private _vehicle = objectParent acre_player;
+if (!isNull _vehicle) then {
+    _vehicle setVariable [QEGVAR(sys_rack,MPTTAssignment), _var];
+};
+
 true
