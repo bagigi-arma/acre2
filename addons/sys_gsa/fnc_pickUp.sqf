@@ -56,6 +56,12 @@ switch (_classname) do {
             };
         };
     };
+    case "rf3080": {
+        _item = "ACRE_RF3080";
+        if (_unit canAdd _item) then {
+            _canDelete = true;
+        };
+    };
 };
 
 if (_canDelete) then {

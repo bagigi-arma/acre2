@@ -31,4 +31,17 @@ class CfgWeapons {
             mass = 100;
         };
     };
+
+    class ACRE_RF3080: CBA_MiscItem {
+        author[] = {"Raspu"};
+        scope = 2;
+        displayName = "RF-3080 SATCOM Antenna";
+        descriptionShort = "RF-3080-AT001 UHF SATCOM Antenna";
+        model = QPATHTOF(data\rf3080\models\rf3080_item.p3d);
+        picture = QPATHTOF(data\rf3080\ui\icon_rf3080.paa);
+
+        class ItemInfo: CBA_MiscItem_ItemInfo {
+            mass = 58;
+        };
+    };
 };

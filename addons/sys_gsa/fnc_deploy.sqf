@@ -32,6 +32,10 @@ switch (_gsaItem) do {
         _gsa = "vhf30108spike";
         _canDeploy = true;
     };
+    case "ACRE_RF3080": {
+        _gsa = "rf3080";
+        _canDeploy = true;
+    };
 };
 
 if (_canDeploy) then {
