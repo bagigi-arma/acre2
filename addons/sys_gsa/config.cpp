@@ -3,8 +3,8 @@
 class CfgPatches {
     class ADDON {
         name = COMPONENT_NAME;
-        units[] = {"vhf30108Item", "vhf30108spike", "ws38_12ft_antenna"};
-        weapons[] = {"ACRE_VHF30108", "ACRE_VHF30108SPIKE", "ACRE_VHF30108MAST", "ACRE_12FT_ANTENNA"};
+        units[] = {"vhf30108Item", "vhf30108spike", "ws38_12ft_antenna", "rf3080"};
+        weapons[] = {"ACRE_VHF30108", "ACRE_VHF30108SPIKE", "ACRE_VHF30108MAST", "ACRE_12FT_ANTENNA", "ACRE_RF3080"};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {"acre_main", "acre_sys_core"};
         author = ECSTRING(main,Author);

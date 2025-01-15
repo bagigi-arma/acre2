@@ -28,6 +28,14 @@ class CfgVehicles {
                     showDisabled = 0;
                     icon = QPATHTOF(data\vhf30108\ui\icon_antenna_ca.paa);
                 };
+
+                class GVAR(placeSatCom) {
+                    displayName = CSTRING(placeSatCom);
+                    condition = QUOTE([ARR_2(_player,'ACRE_RF3080')] call EFUNC(sys_core,hasItem));
+                    statement = QUOTE([ARR_3(_player,'ACRE_RF3080',false)] call FUNC(deploy));
+                    showDisabled = 0;
+                    icon = QPATHTOF(data\vhf30108\ui\icon_antenna_ca.paa);
+                };
             };
         };
     };
@@ -255,6 +263,96 @@ class CfgVehicles {
                     exceptions[] = {};
                     priority = 5;
                     icon = "\idi\acre\addons\ace_interact\data\icons\antenna.paa";
+                };
+            };
+        };
+    };
+
+    class rf3080: House {
+        class EventHandlers {
+            class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
+        };
+
+        scope = 2;
+        scopeCurator = 2;
+        scopeArsenal = 2;
+        displayName = "ACRE RF-3080-AT001";
+        model = QPATHTOF(data\rf3080\models\rf3080.p3d);
+        icon = QPATHTOF(data\rf3080\ui\icon_rf3080.paa);
+        editorPreview = QPATHTOF(data\rf3080\ui\icon_rf3080.paa);
+        vehicleClass = "Items";
+
+        class AcreComponents {
+            componentName = "ACRE_RF3080_UHF_TNC";
+            mountedAntenna = "";
+            mastMount[] = {};
+        };
+
+        class ACE_Actions {
+            class ACE_MainActions {
+                selection = "interaction_point";
+                distance  = 5;
+                condition = "(true)";
+
+                class ACRE_pickup {
+                    selection = "";
+                    displayName = CSTRING(pickUp);
+                    distance = 10;
+                    condition = "true";
+                    statement = QUOTE([ARR_2(_player,_target)] call DFUNC(pickUp));
+                    showDisabled = 0;
+                    exceptions[] = {};
+                    priority = 5;
+                    //icon = "\idi\acre\addons\ace_interact\data\icons\antenna.paa";
+                };
+
+                class ACRE_connect {
+                    selection = "";
+                    displayName = CSTRING(connect);
+                    distance = 10;
+                    condition = QUOTE(!([ARR_2(_player,_target)] call DFUNC(isAntennaConnected)) && {[ARR_2(_player,_target)] call DFUNC(hasCompatibleRadios)});
+                    statement = QUOTE(true);
+                    insertChildren = QUOTE([ARR_2(_player,_target)] call DFUNC(connectChildrenActions));
+                    showDisabled = 0;
+                    exceptions[] = {};
+                    priority = 5;
+                    icon = "\idi\acre\addons\ace_interact\data\icons\antenna.paa";
+                };
+
+                class ACRE_disconnect {
+                    selection = "";
+                    displayName = CSTRING(disconnect);
+                    distance = 10;
+                    condition = QUOTE([ARR_2(_player,_target)] call DFUNC(isAntennaConnected));
+                    statement = QUOTE([ARR_2(_player,_target)] call DFUNC(disconnect));
+                    showDisabled = 0;
+                    exceptions[] = {};
+                    priority = 5;
+                    icon = "\idi\acre\addons\ace_interact\data\icons\antenna.paa";
+                };
+
+                class ACRE_reorient {
+                    selection = "";
+                    displayName = CSTRING(reorient);
+                    distance = 3;
+                    condition = QUOTE(true);
+                    statement = QUOTE(_target setDir (getDir _player); _target setVectorUp [ARR_3(0,0,1)]);
+                    showDisabled = 0;
+                    exceptions[] = {};
+                    priority = 5;
+                    icon = "";
+                };
+
+                class ACRE_checkConnection {
+                    selection = "";
+                    displayName = CSTRING(checkConnection);
+                    distance = 3;
+                    condition = QUOTE(true);
+                    statement = QUOTE(_target call FUNC(checkSatcomConnection));
+                    showDisabled = 0;
+                    exceptions[] = {};
+                    priority = 5;
+                    icon = "";
                 };
             };
         };

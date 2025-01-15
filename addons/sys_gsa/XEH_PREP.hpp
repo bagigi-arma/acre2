@@ -1,3 +1,4 @@
+PREP(checkSatcomConnection);
 PREP(connect);
 PREP(connectChildrenActions);
 PREP(connectServer);
