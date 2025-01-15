@@ -31,8 +31,10 @@ if (_count == 0) then {
         private _signal = -992;
         // Nothing can be received if the transmitter isn't also using an RF3080
         if ((_txAntennas#0#0) == "ACRE_RF3080_UHF_TNC") then {
-            _Px = 1;
-            _signal = -40;
+            if (([_txAntennas#0#1] call FUNC(checkClearSkyLOS)) && {[_rxAntennas#0#1] call FUNC(checkClearSkyLOS)}) then {
+                _Px = 1;
+                _signal = -40;
+            };
         };
         missionNamespace setVariable [_transmitterClass + "_best_ant", format ["%1_%2_%3_%4", _transmitterClass, (_txAntennas#0#0), _receiverClass, (_rxAntennas#0#0)]];
         missionNamespace setVariable [_transmitterClass + "_best_px", _Px];

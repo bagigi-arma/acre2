@@ -81,6 +81,11 @@
             <German>Drehe Antenne</German>
             <Italian>Riorienta antenna</Italian>
         </Key>
+        <Key ID="STR_ACRE_sys_gsa_checkConnection">
+            <English>Check Connection</English>
+            <German>Kontrolliere Verbindung</German>
+            <Italian>Controlla ricezione</Italian>
+        </Key>
         <Key ID="STR_ACRE_sys_gsa_pickup">
             <English>Pick up</English>
             <Spanish>Recoger</Spanish>

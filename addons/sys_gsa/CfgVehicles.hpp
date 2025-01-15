@@ -263,6 +263,18 @@ class CfgVehicles {
                     priority = 5;
                     icon = "";
                 };
+
+                class ACRE_checkConnection {
+                    selection = "";
+                    displayName = CSTRING(checkConnection);
+                    distance = 3;
+                    condition = QUOTE(true);
+                    statement = QUOTE(_target call FUNC(checkSatcomConnection));
+                    showDisabled = 0;
+                    exceptions[] = {};
+                    priority = 5;
+                    icon = "";
+                };
             };
         };
     };
