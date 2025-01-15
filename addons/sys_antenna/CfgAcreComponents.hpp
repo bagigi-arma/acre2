@@ -160,4 +160,13 @@ class CfgAcreComponents {
         binaryGainFile = QPATHTOF(binary\AerialRod_12ft_gain.aba);
         compatibleRadios[] = {"ACRE_WS38"};
     };
+
+    class ACRE_RF3080_UHF_TNC: ACRE_BaseAntenna {
+        name = "RF-3080-AT001 Deployable SATCOM Antenna";
+        shortName = "RF-3080 SATCOM";
+        connector = ACRE_CONNECTOR_TNC;
+        height = 0.5;
+        binaryGainFile = QPATHTOF(binary\Thales_100cm_Whip_gain.aba);
+        compatibleRadios[] = {"ACRE_PRC152", "ACRE_PRC117F"};
+    };
 };

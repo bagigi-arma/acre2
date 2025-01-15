@@ -1,3 +1,4 @@
+PREP(checkClearSkyLOS);
 PREP(getRadioClimateCode);
 PREP(getSignal);
 PREP(getSignalCore);
