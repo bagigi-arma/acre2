@@ -36,6 +36,10 @@ switch (_gsaItem) do {
         _gsa = "ws38_12ft_antenna";
         _canDeploy = true;
     };
+    case "ACRE_RF3080": {
+        _gsa = "rf3080";
+        _canDeploy = true;
+    };
 };
 
 if (_canDeploy) then {

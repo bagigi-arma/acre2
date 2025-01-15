@@ -25,6 +25,28 @@ if (_count == 0) then {
     private _rxAntennas = [_receiverClass] call EFUNC(sys_components,findAntenna);
     private _txAntennas = [_transmitterClass] call EFUNC(sys_components,findAntenna);
 
+    // Use SATCOM Model if any party is using the RF3080
+    private _rxAntIsSatcom = (_rxAntennas#0#0) == "ACRE_RF3080_UHF_TNC";
+    private _txAntIsSatcom = (_txAntennas#0#0) == "ACRE_RF3080_UHF_TNC";
+    if (_rxAntIsSatcom || _txAntIsSatcom) exitWith {
+        private _Px = 0;
+        private _signal = -992;
+        // Nothing can be received unless both are using an RF3080
+        if (_rxAntIsSatcom && _txAntIsSatcom) then {
+            if (
+                ([_txAntennas#0#1] call FUNC(checkClearSkyLOS)) && 
+                {[_rxAntennas#0#1] call FUNC(checkClearSkyLOS)}
+            ) then {
+                _Px = 1;
+                _signal = -40;
+            };
+        };
+        missionNamespace setVariable [_transmitterClass + "_best_ant", format ["%1_%2_%3_%4", _transmitterClass, (_txAntennas#0#0), _receiverClass, (_rxAntennas#0#0)]];
+        missionNamespace setVariable [_transmitterClass + "_best_px", _Px];
+        missionNamespace setVariable [_transmitterClass + "_best_signal", _signal];
+        missionNamespace setVariable [_transmitterClass + "_running_count", 0];
+    };
+
     private _model = GVAR(signalModel); // TODO: Change models on the fly if compatible (underwater, better frequency matching)
 
     // Make sure ITWOM is not used for the moment
