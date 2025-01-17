@@ -25,13 +25,18 @@ if (_count == 0) then {
     private _rxAntennas = [_receiverClass] call EFUNC(sys_components,findAntenna);
     private _txAntennas = [_transmitterClass] call EFUNC(sys_components,findAntenna);
 
-    // Use SATCOM Model when using the RF3080
-    if ((_rxAntennas#0#0) == "ACRE_RF3080_UHF_TNC") exitWith {
+    // Use SATCOM Model if any party is using the RF3080
+    private _rxAntIsSatcom = (_rxAntennas#0#0) == "ACRE_RF3080_UHF_TNC";
+    private _txAntIsSatcom = (_txAntennas#0#0) == "ACRE_RF3080_UHF_TNC";
+    if (_rxAntIsSatcom || _txAntIsSatcom) exitWith {
         private _Px = 0;
         private _signal = -992;
-        // Nothing can be received if the transmitter isn't also using an RF3080
-        if ((_txAntennas#0#0) == "ACRE_RF3080_UHF_TNC") then {
-            if (([_txAntennas#0#1] call FUNC(checkClearSkyLOS)) && {[_rxAntennas#0#1] call FUNC(checkClearSkyLOS)}) then {
+        // Nothing can be received unless both are using an RF3080
+        if (_rxAntIsSatcom && _txAntIsSatcom) then {
+            if (
+                ([_txAntennas#0#1] call FUNC(checkClearSkyLOS)) && 
+                {[_rxAntennas#0#1] call FUNC(checkClearSkyLOS)}
+            ) then {
                 _Px = 1;
                 _signal = -40;
             };
